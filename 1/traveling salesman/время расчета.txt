@@ -1,9 +1,89 @@
-количество городов 	Время перебор(мкс)	Время жадный (мкс)
-3			6			0
-4			5			0	
-5			12			1
-6			27			1
-7			43			1
-8			267			1
-9			2205			2
-10			225003			3
+N = 2
+minimum path:1 2 (6)
+maximum path:1 2 (6)
+calculation time:0
+
+greedy way:1 2 (6)
+calculation time:1
+Accuracy 100%
+************************
+
+N = 3
+minimum path:1 3 2 (16)
+maximum path:1 2 3 (17)
+calculation time:5
+
+greedy way:1 2 3 (17)
+calculation time:0
+Accuracy 0 %
+************************
+
+N = 4
+minimum path:1 2 3 4 (16)
+maximum path:1 3 4 2 (34)
+calculation time:1
+
+greedy way:1 2 4 3 (19)
+calculation time:1
+Accuracy 84 %
+************************
+
+N = 5
+minimum path:1 2 5 3 4 (16)
+maximum path:1 3 4 5 2 (33)
+calculation time:3
+
+greedy way:1 4 5 3 2 (21)
+calculation time:1
+Accuracy 71 %
+************************
+
+N = 6
+minimum path:1 3 4 6 2 5 (21)
+maximum path:1 4 5 6 3 2 (51)
+calculation time:18
+
+greedy way:1 5 4 6 2 3 (23)
+calculation time:2
+Accuracy 94 %
+************************
+
+N = 7
+minimum path:1 4 5 6 7 3 2 (18)
+maximum path:1 3 4 7 2 6 5 (52)
+calculation time:92
+
+greedy way:1 4 5 6 7 2 3 (23)
+calculation time:4
+Accuracy 86 %
+************************
+
+N = 8
+minimum path:1 2 4 8 6 5 7 3 (16)
+maximum path:1 4 6 2 3 5 8 7 (69)
+calculation time:481
+
+greedy way:1 6 5 7 3 8 4 2 (23)
+calculation time:1
+Accuracy 87 %
+************************
+
+N = 9
+minimum path:1 2 4 3 9 5 8 6 7 (17)
+maximum path:1 9 7 6 4 5 3 2 8 (83)
+calculation time:2254
+
+greedy way:1 2 7 5 6 3 9 4 8 (31)
+calculation time:2
+Accuracy 79 %
+************************
+
+N = 10
+minimum path:1 2 8 4 7 6 10 9 3 5 (22)
+maximum path:1 10 2 3 8 5 4 6 7 9 (85)
+calculation time:22132
+
+greedy way:1 4 3 10 8 7 5 9 2 6 (30)
+calculation time:4
+Accuracy 88 %
+************************
