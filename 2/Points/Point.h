@@ -14,7 +14,8 @@ public:
     void set_z(const double real);
 
     void set_point(const double, const double, const double);
-    void input();
+    void output() const;
+    void input(std::istream&, std::istream&, std::istream&);
 
     void plane() const;
     bool octant(const Point& other) const;
@@ -25,8 +26,10 @@ public:
 
     double abs() const;
     bool operator >(const Point& other) const;
+    bool operator <(const Point& other) const;
 
     Point operator *(const double A) const;
+    
 
     double distanceX() const;
     double distanceY() const;
@@ -40,3 +43,5 @@ private:
     double x, y, z;
 
 };
+
+Point operator*(const double A, const Point& P);

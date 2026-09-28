@@ -9,9 +9,6 @@ Point::Point()
 	x = 0.0;
 	y = 0.0;
 	z = 0.0;
-
-	std::cout << "Point has been created:" << std::endl;
-	std::cout << "x = " << x << " y = " << y << " z = " << z << std::endl;
 }
 
 
@@ -34,11 +31,22 @@ void Point::set_y(const double p_x) { x = p_x; }
 double Point::get_z() const { return x; }
 void Point::set_z(const double p_x) { x = p_x; }
 
-void Point::input()
+void Point::input(std::istream& p_x, std::istream& p_y, std::istream& p_z)
+{
+	p_x >> x;
+	p_y >> y;
+	p_z >> z;
+
+	std::cout << "new values:" << std::endl;
+	std::cout << "x = " << x << " y = " << y << " z = " << z << std::endl;
+}
+
+void Point::output() const
 {
 	std::cout << "Coordinates of the point:" << std::endl;
 	std::cout << "x = " << x << " y = " << y << " z = " << z << std::endl;
 }
+
 
 void Point::set_point(const double p_x, const double p_y, const double p_z)
 {
@@ -106,6 +114,11 @@ bool Point::operator >(const Point& other) const
 	return abs()>other.abs();
 }
 
+bool Point::operator <(const Point& other) const
+{
+	return !(operator >(other));
+}
+
 Point Point::operator *(const double A) const
 {
 	Point temp;
@@ -113,6 +126,12 @@ Point Point::operator *(const double A) const
 	temp.y = A*y;
 	temp.z = A*z;
 	return temp;
+}
+
+
+Point operator *(const double A, const Point& P)
+{
+	return P*A;
 }
 
 double Point::distanceX() const
@@ -141,7 +160,11 @@ bool Point::triangle(const Point& second, const Point& third) const
 
 double Point::square(const Point& second, const Point& third) const
 {
-	return 0.5 * sqrt(pow((second.y - y)*(third.z - z) - (second.z - z)*(third.y - y), 2) +
-		pow((second.z - z)*(third.x - x) - (second.x - x)*(third.z - z), 2) +
-		pow((second.x - x)*(third.y - y) - (second.y - y)*(third.x - x), 2));
+	if (triangle(second, third)) {
+		return 0.5 * sqrt(pow((second.y - y) * (third.z - z) - (second.z - z) * (third.y - y), 2) +
+			pow((second.z - z) * (third.x - x) - (second.x - x) * (third.z - z), 2) +
+			pow((second.x - x) * (third.y - y) - (second.y - y) * (third.x - x), 2));
+	}
+	else
+		return 0;
 }

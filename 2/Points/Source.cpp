@@ -17,9 +17,13 @@ int main()
 	std::cout << "P2 x = " << P2.get_x() << std::endl;
 
 	// ввод/вывод точки;
-	P2.input();
+	P2.output();
 	std::cout << "change the second point." << std::endl;
 	P2.set_point(0, 5, 6);
+	std::cout << std::endl;
+
+	std::cout << "Enter the new coordinates of the point P2" << std::endl;
+	P2.input(std::cin, std::cin, std::cin);
 	std::cout << std::endl;
 
 	//лежит ли точка на координатной плоскости xOy, xOz, yOz
@@ -44,10 +48,15 @@ int main()
 	//сравнение двух точек
 	(P1 > P3) ? (std::cout << "P1 > P3: " << std::endl) :
 		(std::cout << "P1 < P3: " << std::endl);
+	(P1 < P3) ? (std::cout << "P1 < P3: " << std::endl) :
+		(std::cout << "P1 > P3: " << std::endl);
+	std::cout << std::endl;
 
 	//умножение точки на число
-	Point P4 = P1*1;
-	P4.input();
+	std::cout << "multiplication: " << std::endl;
+	Point P4 = 2*P1;
+	P4.output();
+	std::cout << std::endl;
 
 	//нахождение расстояния от точки до координатных осей
 	std::cout << "distance from the point P4 to the axis X: " << P4.distanceX() << std::endl;
@@ -56,18 +65,18 @@ int main()
 	std::cout << std::endl;
 
 	//проверка, образуют ли три точки треугольник;
-	P1.input();
-	P2.input();
-	P4.input();
+	P1.output();
+	P2.output();
+	P4.output();
 
 	P1.triangle(P2, P4) ? (std::cout << "three points form a triangle" << std::endl) :
 		(std::cout << "It's not a triangle" << std::endl);
 	std::cout << std::endl;
 
 	// нахождение площади треугольника, образованного тремя точками.
-	P1.input();
-	P2.input();
-	P3.input();
+	P1.output();
+	P2.output();
+	P3.output();
 
 	std::cout << "S = " << P1.square(P2, P3) << std::endl;
 
