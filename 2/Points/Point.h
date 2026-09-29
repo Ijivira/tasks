@@ -15,7 +15,7 @@ public:
 
     void set_point(const double, const double, const double);
     void output() const;
-    void input(std::istream&, std::istream&, std::istream&);
+    void input(std::istream&);
 
     void plane() const;
     bool octant(const Point& other) const;

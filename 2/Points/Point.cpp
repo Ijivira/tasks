@@ -31,11 +31,9 @@ void Point::set_y(const double p_x) { x = p_x; }
 double Point::get_z() const { return x; }
 void Point::set_z(const double p_x) { x = p_x; }
 
-void Point::input(std::istream& p_x, std::istream& p_y, std::istream& p_z)
+void Point::input(std::istream& p)
 {
-	p_x >> x;
-	p_y >> y;
-	p_z >> z;
+	p >> x >> y >> z;
 
 	std::cout << "new values:" << std::endl;
 	std::cout << "x = " << x << " y = " << y << " z = " << z << std::endl;

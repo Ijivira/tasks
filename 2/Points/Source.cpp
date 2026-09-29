@@ -23,7 +23,7 @@ int main()
 	std::cout << std::endl;
 
 	std::cout << "Enter the new coordinates of the point P2" << std::endl;
-	P2.input(std::cin, std::cin, std::cin);
+	P2.input(std::cin);
 	std::cout << std::endl;
 
 	//лежит ли точка на координатной плоскости xOy, xOz, yOz
