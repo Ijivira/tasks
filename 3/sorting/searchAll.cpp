@@ -3,10 +3,19 @@
 #include <string>
 #include <vector>
 
-extern int table[];
-
-std::vector<int> searchAll(std::string& S, std::string& P)
+std::vector<int> searchAll(const std::string& S, const std::string& P)
 {
+	int table[256];
+	// таблица чисел, в которой формируются расстояния символов образца до конца образца.
+	for (int i = 0; i < 256; i++)
+	{
+		table[i] = P.size();
+	}
+	for (int i = 0; i < P.size() - 1; i++)
+	{
+		table[(int)P[i]] = P.size() - i - 1;
+	}
+
 	std::vector<int> answer;
 
 	int i = P.size() - 1;
@@ -35,6 +44,7 @@ std::vector<int> searchAll(std::string& S, std::string& P)
 	for (int n : answer) {
 		std::cout << n << " ";
 	}
+	std::cout << std::endl;
 	std::cout << std::endl;
 
 	return answer;

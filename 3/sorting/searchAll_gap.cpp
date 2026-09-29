@@ -3,11 +3,28 @@
 #include <string>
 #include <vector>
 
-extern int table[];
 
-std::vector<int> searchAll_gap(std::string& S, std::string& P, int start, int end)
+std::vector<int> searchAll_gap(const std::string& S, const std::string& P, int start, int end)
 {
+	int table[256];
+	// таблица чисел, в которой формируются расстояния символов образца до конца образца.
+	for (int i = 0; i < 256; i++)
+	{
+		table[i] = P.size();
+	}
+	for (int i = 0; i < P.size() - 1; i++)
+	{
+		table[(int)P[i]] = P.size() - i - 1;
+	}
+
 	std::vector<int> answer;
+
+	if (end<0 || end > S.size()) {
+		end = S.size();
+	}
+	if (start<0 || start > end) {
+		start = 0;
+	}
 	
 	int i = start + P.size() - 1;
 	int j = P.size() - 1;
@@ -42,6 +59,7 @@ std::vector<int> searchAll_gap(std::string& S, std::string& P, int start, int en
 	for (int n : answer) {
 		std::cout << n << " ";
 	}
+	std::cout << std::endl;
 
 	return answer;
 }

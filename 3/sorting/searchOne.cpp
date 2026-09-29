@@ -2,10 +2,19 @@
 #include <string>
 #include <vector>
 
-extern int table[];
-
-int searchOne(std::string& S, std::string& P)
+int searchOne(const std::string& S, const std::string& P)
 {
+	int table[256];
+	// таблица чисел, в которой формируются расстояния символов образца до конца образца.
+	for (int i = 0; i < 256; i++)
+	{
+		table[i] = P.size();
+	}
+	for (int i = 0; i < P.size() - 1; i++)
+	{
+		table[(int)P[i]] = P.size() - i - 1;
+	}
+
 	int i = P.size() - 1;
 	int j = P.size() - 1;
 	int k = i;
@@ -23,6 +32,7 @@ int searchOne(std::string& S, std::string& P)
 		}
 	}
 	std::cout << i - P.size() + 1 << std::endl;
+	std::cout << std::endl;
 
 	return i - P.size() + 1;
 }
