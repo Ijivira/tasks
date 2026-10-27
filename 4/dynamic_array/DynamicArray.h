@@ -18,14 +18,14 @@ public:
 	DynamicArray& input();
 	void output() const;
 
-	DynamicArray& sort();
-	DynamicArray& insert(const int element, const int index);
-	DynamicArray& insert(const int element, const iterator iterator);
-	DynamicArray& delete_position(const int position);
-	DynamicArray& delete_element(const int element);
-	DynamicArray& delete_all_element(const int element);
-	DynamicArray& delete_element(iterator it);
-	DynamicArray& delete_element(iterator it_begin, iterator it_end);
+	void sort();
+	bool insert(const int element, const int index);
+	bool delete_position(const int position);
+	bool delete_element(const int element);
+	bool delete_all_element(const int element);
+	bool insert(const int element, const iterator iterator);
+	bool delete_element(iterator it);
+	bool delete_element(iterator it_begin, iterator it_end);
 
 
 	int min() const;
@@ -64,6 +64,8 @@ public:
 
 	bool operator == (const iterator otherIterator);
 	bool operator != (const iterator otherIterator);
+	bool operator < (const iterator otherIterator);
+	bool operator > (const iterator otherIterator);
 	int operator - (const iterator otherIterator);
 	iterator& operator + (const int n);
 	iterator& operator - (const int n);
