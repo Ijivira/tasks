@@ -1,0 +1,14 @@
+1. первоначально используемая Шеллом последовательность длин промежутков:
+0 0 0  		average: 0 milliseconds.
+39 35 29  	average: 34 milliseconds.
+3593 3346 3696  average: 3545 milliseconds.
+
+2. hm = 2^m – 1 при m = 1, 2, ..., t = [log2n]
+0 0 0  		average: 0 milliseconds.
+52 47 47  	average: 48 milliseconds.
+4431 4124 4650  average: 4401 milliseconds.
+
+3.Кнут: h(1) = 1, h(j+1) = 3h(j) + 1 для j = 1, 2, ..., t – 1
+0 0 0  		average: 0 milliseconds.
+59 43 49  	average: 50 milliseconds.
+4492 4243 5467  average: 4734 milliseconds.
