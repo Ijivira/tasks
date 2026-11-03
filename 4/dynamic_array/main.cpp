@@ -162,5 +162,9 @@ int main()
 	Dynamic_A.delete_element(Dynamic_A.begin() + 2, Dynamic_A.begin() + 3);
 	Dynamic_A.output();
 
+	// потоковый ввод и вывод
+	Dynamic_A.output();
+	std::cin >> Dynamic_A;
+	std::cout << Dynamic_A;
 	return 0;
 }

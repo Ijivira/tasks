@@ -571,3 +571,31 @@ bool DynamicArray::delete_element(DynamicArray::iterator it_begin, DynamicArray:
 		return true;
 	}
 }
+
+std::ostream& operator << (std::ostream& outputStream, const DynamicArray& Array)
+{
+	int array_length = Array.get_length();
+
+	outputStream << "[";
+
+	for (int index = 0; index < array_length; index++)
+	{
+		outputStream << Array[index];
+
+		if (index < array_length - 1) outputStream << ", ";
+	}
+
+	outputStream << "]";
+
+	return outputStream;
+}
+
+std::istream& operator >> (std::istream& inputStream, DynamicArray& Array)
+{
+	int element;
+	inputStream >> element;
+
+	Array += element;
+
+	return inputStream;
+}

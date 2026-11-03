@@ -77,3 +77,6 @@ private:
 	int* data;
 	int index;
 };
+
+std::ostream& operator << (std::ostream& outputStream, const DynamicArray& Array);
+std::istream& operator >> (std::istream& inputStream, DynamicArray& Array);
