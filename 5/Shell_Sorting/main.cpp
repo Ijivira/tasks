@@ -36,16 +36,18 @@ void creating_array_files(int N[3], int a[3], int b[3])
 {
     for (int i = 0; i < 3; i++)
     {
-        int* array = new int[N[i]];
+        for (int j = 0; j < 3; j++)
+        { 
+            int* array = new int[N[i]];
 
-        std::string file_name = "array_N_" + std::to_string(N[i]) +
-            "_range_" + std::to_string(a[i]) + "_" + std::to_string(b[i]) + ".txt";
+            std::string file_name = "array_N_" + std::to_string(N[i]) +
+                "_range_" + std::to_string(a[j]) + "_" + std::to_string(b[j]) + ".txt";
 
-        random_array(array, N[i], a[i], b[i]);
-        write_file(array, N[i], file_name);
+            random_array(array, N[i], a[j], b[j]);
+            write_file(array, N[i], file_name);
 
-        delete[] array;
-
+            delete[] array;
+        }
     }
 }
 
@@ -83,21 +85,21 @@ int* Shell_Sorting(const int* array, const int N)
     }
 
     // 1 Вариант
-    for (int step = N / 2; step > 0; step /= 2)
+    //for (int step = N / 2; step > 0; step /= 2)
 
     // 2 Вариант
     /*int size_h = std::log2(N);
     int* h = new int[size_h];
     for (int i = 0; i < size_h; i++)
     {
-        h[i] = pow(2, i+1) - 1;
+        h[size_h-1-i] = pow(2, i+1) - 1;
     }
 
     int step = h[0];
     for (int i = 0; i < size_h; i++, step = h[i])*/
 
     // 3 Вариант
-    /*int size_h = std::log2(N) - 1;
+    int size_h = std::log2(N) - 1;
     int* h = new int[size_h];
     h[0] = 1;
     for (int i = 1; i < size_h; i++)
@@ -105,8 +107,8 @@ int* Shell_Sorting(const int* array, const int N)
         h[i] = 3*h[i] + 1;
     }
 
-    int step = h[0];
-    for (int i = 0; i < size_h; i++, step = h[i])*/
+    int step = h[size_h-1];
+    for (int i = 0; i < size_h; i++, step = h[size_h - 1 - i])/**/
     {
         
         for (int i = step; i < N; i += step)
@@ -139,7 +141,7 @@ void main()
     int N[3] = { 1000, 10000, 100000},
         a[3] = { -10, -1000, -100000},
         b[3] = { 10, 1000, 100000},
-        time[3][3];
+        time[3][3][3];
 
     // СОЗДАНИЕ ФАЙЛОВ
     creating_array_files (N, a, b);
@@ -147,62 +149,67 @@ void main()
     // прогонка по трем разным массивам
     for (int i = 0; i < 3; i++)
     {
-        // ЧТЕНИЕ ФАЙЛА
-        std::string file_name = "array_N_" + std::to_string(N[i]) +
-        "_range_" + std::to_string(a[i]) + "_" + std::to_string(b[i]) + ".txt";
-
-        std::ifstream file(file_name);
-
-        int N_elements = 0;
-        int temp;
-
-        while (file >> temp)
-        {
-            N_elements++;
-        }
-
-        int* array = new int[N_elements];
-
-        file.clear();
-        file.seekg(0, std::ios::beg);
-
-        for (int index = 0; index < N_elements; file >> array[index], index++);
-
-        file.close();
-
-
-        // СОРТИРОВКА
-        // три раза
-        int* new_array = new int[N_elements];
-
         for (int j = 0; j < 3; j++)
         {
-            check_order(array, N_elements) ?
-                std::cout << "array is sorted" << std::endl :
-                std::cout << "array is NOT sorted" << std::endl;
+            // ЧТЕНИЕ ФАЙЛА
+            std::string file_name = "array_N_" + std::to_string(N[i]) +
+                "_range_" + std::to_string(a[j]) + "_" + std::to_string(b[j]) + ".txt";
 
-            const auto timeBegin = std::chrono::high_resolution_clock::now();
+            std::ifstream file(file_name);
 
-            new_array = Shell_Sorting(array, N_elements);
+            int N_elements = 0;
+            int temp;
 
-            const auto timeEnd = std::chrono::high_resolution_clock::now();
-            const auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(timeEnd - timeBegin).count();
+            while (file >> temp)
+            {
+                N_elements++;
+            }
+
+            int* array = new int[N_elements];
+
+            file.clear();
+            file.seekg(0, std::ios::beg);
+
+            for (int index = 0; index < N_elements; file >> array[index], index++);
+
+            file.close();
 
 
-            check_order(new_array, N_elements) ?
-                std::cout << "array is sorted" << std::endl :
-                std::cout << "array is NOT sorted" << std::endl;
-            
-            time[i][j] = duration;
+            // СОРТИРОВКА
+            // три раза
+            int* new_array = new int[N_elements];
+
+            for (int k = 0; k < 3; k++)
+            {
+                check_order(array, N_elements) ?
+                    std::cout << "array is sorted" << std::endl :
+                    std::cout << "array is NOT sorted" << std::endl;
+
+                const auto timeBegin = std::chrono::high_resolution_clock::now();
+
+                new_array = Shell_Sorting(array, N_elements);
+
+                const auto timeEnd = std::chrono::high_resolution_clock::now();
+                const auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(timeEnd - timeBegin).count();
+
+
+                check_order(new_array, N_elements) ?
+                    std::cout << "array is sorted" << std::endl :
+                    std::cout << "array is NOT sorted" << std::endl;
+
+                time[i][j][k] = duration;
+            }
         }
        
     }
     for (int i = 0; i < 3; i++) {
         int sum = 0;
         for (int j = 0; j < 3; j++) {
-            std::cout << time[i][j] << " ";
-            sum += time[i][j];
+            for (int k = 0; k < 3; k++) {
+                std::cout << time[i][j][k] << " ";
+                sum += time[i][j][k];
+            }
         }
-        std::cout << " average: " << sum / 3 << " milliseconds." << std::endl;
+        std::cout << " average: " << sum / 9 << " milliseconds." << std::endl;
     }
 }
