@@ -8,7 +8,7 @@ public:
 	DynamicArray();
 	DynamicArray(const T* const Array, const int ArrayLength);
 	DynamicArray(const DynamicArray& other);
-	DynamicArray(DynamicArray&& other);
+	DynamicArray(DynamicArray&& other) noexcept;
 	~DynamicArray();
 
 	int get_length() const;
@@ -36,7 +36,7 @@ public:
 
 	T& operator [](const int index) const;
 	DynamicArray& operator =(const DynamicArray& other);
-	DynamicArray& operator =(DynamicArray&& other);
+	DynamicArray& operator =(DynamicArray&& other) noexcept;
 	
 	DynamicArray operator +(const T element) const;
 	DynamicArray& operator +=(const T element);
@@ -134,7 +134,7 @@ DynamicArray<T>::DynamicArray(const DynamicArray& other)
 
 // перемещающий конструктор
 template <typename T>
-DynamicArray<T>::DynamicArray(DynamicArray&& other)
+DynamicArray<T>::DynamicArray(DynamicArray&& other) noexcept
 {
 	length = other.length;
 	data = other.data;
@@ -397,7 +397,7 @@ DynamicArray<T>& DynamicArray<T>::operator =(const DynamicArray& other)
 
 // присваивание перемещением(= (DynamicArray && other))
 template <typename T>
-DynamicArray<T>& DynamicArray<T>::operator =(DynamicArray&& other)
+DynamicArray<T>& DynamicArray<T>::operator =(DynamicArray&& other) noexcept
 {
 	if (this != &other)
 	{
@@ -629,7 +629,8 @@ DynamicArray<T>::iterator DynamicArray<T>::end() const
 template <typename T>
 bool DynamicArray<T>::insert(const T element, DynamicArray<T>::iterator it)
 {
-	if (it < begin() || it > end())
+	// !!!!!!!!!!!!!!!!!!!
+	if (it < begin() || it > end()) 
 		return false;
 	else {
 		length = length + 1;
