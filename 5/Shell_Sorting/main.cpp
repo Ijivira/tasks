@@ -144,7 +144,7 @@ void main()
         time[3][3][3];
 
     // СОЗДАНИЕ ФАЙЛОВ
-    creating_array_files (N, a, b);
+    //creating_array_files (N, a, b);
 
     // прогонка по трем разным массивам
     for (int i = 0; i < 3; i++)

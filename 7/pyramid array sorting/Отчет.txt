@@ -1,0 +1,8 @@
+array_N_1000
+56 58 35 59 57 54 57 133 85  			average: 66 microseconds.
+
+array_N_10000
+728 681 687 758 764 1059 758 997 801  		average: 803 microseconds.
+
+array_N_100000
+7217 7558 7231 9819 10150 10032 9838 10065 9319 average: 9025 microseconds.
