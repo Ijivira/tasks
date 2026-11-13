@@ -52,7 +52,8 @@ void sifting(int* array, int N_elements, int i)
         if (j + 1 < N_elements && array[j + 1] > array[j])
             j = j + 1;
 
-        if (temp < array[j])
+
+        if (array[j]> temp)
         {
             array[i] = array[j];
             i = j;
@@ -61,12 +62,15 @@ void sifting(int* array, int N_elements, int i)
         else
             flag = 0;
     }
+
     array[i] = temp;
 }
 
 int* pyramid_sorting(int *array, int N_elements)
 {
     int* new_array = new int[N_elements];
+
+
     for (int i = 0; i < N_elements; i++) {
         new_array[i] = array[i];
     }
@@ -75,11 +79,13 @@ int* pyramid_sorting(int *array, int N_elements)
         sifting(new_array, N_elements, i);
 
 // Проcеивание всех элементов
-    for (int i = N_elements - 1; i > 0; i--)
+    for (int i = N_elements-1; i > 0; i--)
     {
         swap(new_array[0], new_array[i]);
-        sifting(new_array, i-1, 0);
+        sifting(new_array, i, 0);
     }
+
+
     return new_array;
 }
 
@@ -90,7 +96,7 @@ void main()
         a[3] = { -10, -1000, -100000},
         b[3] = { 10, 1000, 100000},
         time[3][3][3];
-   // int i = 2, j = 2;
+
     // прогонка по трем разным массивам
     for (int i = 0; i < 3; i++)
     {
@@ -99,8 +105,6 @@ void main()
             // ЧТЕНИЕ ФАЙЛА
              std::string file_name = "array_N_" + std::to_string(N[i]) +
                  "_range_" + std::to_string(a[j]) + "_" + std::to_string(b[j]) + ".txt";
-
-            //std::string file_name = "array_N_20_range_-10_10.txt";
 
             std::ifstream file(file_name);
 
@@ -137,7 +141,7 @@ void main()
                 new_array = pyramid_sorting(array, N_elements);
 
                 const auto timeEnd = std::chrono::high_resolution_clock::now();
-                const auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(timeEnd - timeBegin).count();
+                const auto duration = std::chrono::duration_cast<std::chrono::microseconds>(timeEnd - timeBegin).count();
 
                 check_order(new_array, N_elements) ?
                     std::cout << "array is sorted" << std::endl :
@@ -150,7 +154,7 @@ void main()
         }
 
     }
-    /*
+    
     for (int i = 0; i < 3; i++) {
         int sum = 0;
         for (int j = 0; j < 3; j++) {
@@ -159,6 +163,6 @@ void main()
                 sum += time[i][j][k];
             }
         }
-        std::cout << " average: " << sum / 9 << " milliseconds." << std::endl;
-    }*/
+        std::cout << " average: " << sum / 9 << " microseconds." << std::endl;
+    }
 }
