@@ -139,6 +139,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BitReference.cpp" />
     <ClCompile Include="BooleanVector.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
